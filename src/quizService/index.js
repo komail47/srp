@@ -8,7 +8,7 @@ const qBank = [
       "Involve all stake holders and device the best way to solve the problem.  "
     ],
 
-    values: [1, 2, 3, 4],
+    values: [3, 1, 1, 2],
     questionId: "099099"
   },
   {
@@ -20,7 +20,7 @@ const qBank = [
       "Delegate tasks to someone else and attend to the tasks that are interesting."
     ],
 
-    values: [1, 2, 3, 4],
+    values: [3, 2, 1, 1],
     questionId: "183452"
   },
   {
@@ -31,7 +31,7 @@ const qBank = [
       "Accept/Decline the meeting request/Propose another convenient time if busy.",
       "Decline the meeting request."
     ],
-    values: [1, 2, 3, 4],
+    values: [0, 1, 3, 0],
     questionId: "267908"
   },
   {
@@ -42,7 +42,7 @@ const qBank = [
       "Reply to the email or act on it as soon as it is received.",
       "Ignore the mail until I receive a reminder."
     ],
-    values: [1, 2, 3, 4],
+    values: [3, 2, 1, 0],
     questionId: "333247"
   },
   {
@@ -53,7 +53,7 @@ const qBank = [
       "Arrive late since everyone comes late to the meetings.",
       "Arrive half an hour early and help with meeting setup."
     ],
-    values: [1, 2, 3, 4],
+    values: [3, 1, 0, 2],
     questionId: "496293"
   },
   {
@@ -64,7 +64,7 @@ const qBank = [
       "Prepare meetings notes/actions to track the decisions & discussions.",
       "All of the above"
     ],
-    values: [1, 2, 3, 4],
+    values: [1, 2, 1, 3],
     questionId: "588909"
   },
   {
@@ -75,7 +75,7 @@ const qBank = [
       "Work overtime and complete your workload",
       "Delegate certain tasks and handle the most important items yourself"
     ],
-    values: [1, 2, 3, 4],
+    values: [0, 3, 1, 2],
     questionId: "648452"
   },
   {
@@ -86,7 +86,7 @@ const qBank = [
       "Avoid your supervisor and pretend nothing happened.",
       "Send email at the end of the month, explaining your reason."
     ],
-    values: [1, 2, 3, 4],
+    values: [3, 1, 0, 2],
     questionId: "786649"
   },
   {
@@ -97,7 +97,7 @@ const qBank = [
       "Wait until you get cooled down and then talk to him about the topic",
       "All of the above"
     ],
-    values: [1, 2, 3, 4],
+    values: [1, 2, 2, 3],
     questionId: "839754"
   },
   {
@@ -108,7 +108,7 @@ const qBank = [
       "Walk passed it, pretend you did not see it.",
       "Report the incident to the first person you see."
     ],
-    values: [1, 2, 3, 4],
+    values: [3, 0, 0, 2],
     questionId: "98390"
   },
   {
@@ -119,7 +119,7 @@ const qBank = [
       "Second, good food comes first always.",
       "First, however I try to exercise whenever I can and have time."
     ],
-    values: [1, 2, 3, 4],
+    values: [3, 1, 0, 2],
     questionId: "1071006"
   },
   {
@@ -131,7 +131,7 @@ const qBank = [
       "I can’t Remember. ",
       "I rarely do."
     ],
-    values: [1, 2, 3, 4],
+    values: [3, 0, 1, 0],
     questionId: "1174154"
   },
   {
@@ -142,13 +142,13 @@ const qBank = [
       "I sometimes follow through with it",
       "I Always follow through with it"
     ],
-    values: [1, 2, 3, 4],
+    values: [2, 1, 1, 3],
     questionId: "1226535"
   },
   {
     question: "I TAKE PERSONAL RESPONSIBILITY FOR THE ORDERS I GIVE ...",
     answers: ["Usually", "Occasionally ", "Sometimes", "Always"],
-    values: [1, 2, 3, 4],
+    values: [2, 1, 1, 3],
     questionId: "1310938"
   },
   {
@@ -159,7 +159,7 @@ const qBank = [
       "Generally speaking, yes.",
       "Exactly."
     ],
-    values: [1, 2, 3, 4],
+    values: [1, 1, 2, 3],
     questionId: "1436873"
   },
   {
@@ -171,7 +171,7 @@ const qBank = [
       "Sometimes yes, sometimes no.",
       "Usually"
     ],
-    values: [1, 2, 3, 4],
+    values: [0, 0, 2, 2],
     questionId: "1515110"
   }
 ];

@@ -35,9 +35,10 @@ class SRP_EHS extends Component {
   };
 
   computeAnswer = (answer, answerValue) => {
-    this.setState({ score: parseInt(this.state.score + answer) });
+    this.setState({ score: parseInt(this.state.score + answerValue) });
     console.log("COMPUTE ANSWER TEXT: " + answer);
     console.log(answerValue);
+    console.log(this.state.score);
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
     });
