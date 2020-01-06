@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import Answer from "./Answer.jsx";
 
-const QuestionBox = ({ question, options, selected, val }) => {
+const QuestionBox = ({ question, options, computeAnswer, values }) => {
   const [answer, setAnswer] = useState(options);
-  // const [value, setValue] = useState(options);
+  const [valueObj, setValue] = useState(options);
   return (
     <div className="questionBox">
       <div className="question">{question}</div>
@@ -11,13 +12,15 @@ const QuestionBox = ({ question, options, selected, val }) => {
           key={index}
           className="answerBtn"
           onClick={() => {
+            let value = values[index];
             setAnswer([text]);
-            // setValue([value])
-            selected(text);
+            setValue(value);
+            computeAnswer(text, value);
           }}
         >
           {text}
         </button>
+        //<Answer text={text} selected={selected} options={options} />
       ))}
     </div>
   );

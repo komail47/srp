@@ -7,11 +7,17 @@ import "./assets/style.css";
 import Bapco_logo from "../src/assets/Bapco_logo.png";
 import ehs_logo from "../src/assets/ehs_logo.png";
 class SRP_EHS extends Component {
-  state = {
-    questionBank: [],
-    score: 0,
-    responses: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      questionBank: [],
+      score: 0,
+      responses: 0
+    };
+
+    this.computeAnswer = this.computeAnswer.bind(this);
+  }
+
   getQuestion = () => {
     quizService().then(question => {
       this.setState({
@@ -27,9 +33,11 @@ class SRP_EHS extends Component {
       responses: 0
     });
   };
-  computeAnswer = ( val) => {
-    this.setState({ score: parseInt(this.state.score + val) });
-console.log(val);
+
+  computeAnswer = (answer, answerValue) => {
+    this.setState({ score: parseInt(this.state.score + answer) });
+    console.log("COMPUTE ANSWER TEXT: " + answer);
+    console.log(answerValue);
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
     });
@@ -52,13 +60,13 @@ console.log(val);
         {this.state.questionBank.length > 0 &&
           this.state.responses < 5 &&
           this.state.questionBank.map(
-            ({ question, answers, val, questionId }) => (
+            ({ question, answers, values, questionId }) => (
               <QuestionBox
                 question={question}
                 options={answers}
-                values={val}
+                values={values}
                 key={questionId}
-                selected={val => this.computeAnswer( val)}
+                computeAnswer={this.computeAnswer}
               />
             )
           )}
