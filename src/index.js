@@ -12,7 +12,8 @@ class SRP_EHS extends Component {
     this.state = {
       questionBank: [],
       score: 0,
-      responses: 0
+      responses: 0,
+      res: String
     };
 
     this.computeAnswer = this.computeAnswer.bind(this);
@@ -26,6 +27,16 @@ class SRP_EHS extends Component {
     });
   };
 
+  checkRes = () => {
+    if (this.state.score >= 12) {
+      this.state.res = "high";
+    } else if (this.state.score < 12 & this.state.score >= 8) {
+      this.state.res = "mid";}
+      else if (this.state.score < 12 & this.state.score >= 8) {
+        this.state.res = "mid";
+    } else this.state.res = "low";
+  };
+
   playAgain = () => {
     this.getQuestion();
     this.setState({
@@ -33,7 +44,27 @@ class SRP_EHS extends Component {
       responses: 0
     });
   };
-
+  async postData() {
+    try {
+      let result = await fetch(
+        "https://webhook.site/ca3de149-ba73-4906-bc17-91e45f468038",
+        {
+          method: "post",
+          mode: "no-cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            score: this.state.score,
+            email: "gmail"
+          })
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
   computeAnswer = (answer, answerValue) => {
     this.setState({ score: parseInt(this.state.score + answerValue) });
     console.log("COMPUTE ANSWER TEXT: " + answer);
@@ -43,22 +74,28 @@ class SRP_EHS extends Component {
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
     });
 
+    this.checkRes();
+
     //TODO: Create C# WEB API
     //TODO: Connect react to the WEB API
   };
 
   componentDidMount() {
     this.getQuestion();
+    
   }
+componentDidUpdate(){
+  this.postData();
+}
   render() {
     return (
       <div className="container">
         <div className="header">
           <div className="title">
             {" "}
-            <img className="bapco_logo" src={Bapco_logo} />
+            <img className="bapco_logo" src={Bapco_logo} alt="bapco logo" />
             AM I RELIABLE?
-            <img src={ehs_logo} />
+            <img src={ehs_logo} alt="ehs logo"/>
           </div>
         </div>
         {this.state.questionBank.length > 0 &&
@@ -76,7 +113,11 @@ class SRP_EHS extends Component {
           )}
 
         {this.state.responses === 5 ? (
-          <Result score={this.state.score} playAgain={this.playAgain} />
+          <Result
+            score={this.state.score}
+            playAgain={this.playAgain}
+            res={this.state.res}
+          />
         ) : null}
       </div>
     );

@@ -13,7 +13,7 @@
   padding: 10px;
   box-sizing: border-box;
   top: 0px;
-  bottom: 0px;
+  bottom: auto;
   left: 0px;
   right: 0px;
   margin: auto;
@@ -72,17 +72,18 @@ img:last-child{
 .score-board {
   position: relative;
   height: 700px;
+  top: 60px;
+  bottom: 150px;
 }
 
 .score {
-  padding-top: 200px;
-  font-size: 60px;
-  top: 250px;
+
+
   text-align: center;
 }
 
 .playBtn {
-  position: absolute;
+  display: inherit;
   font-size: 1.4em;
   padding: 10px;
   top: 350px;
