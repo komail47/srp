@@ -41,6 +41,9 @@ class SRP_EHS extends Component {
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
     });
+
+    //TODO: Create C# WEB API
+    //TODO: Connect react to the WEB API
   };
 
   componentDidMount() {
