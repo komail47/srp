@@ -20,13 +20,20 @@
 }
 img{
   height :100px;
+  padding: 0px 20px 0 20px;
+
+
 }
 img:first-child{
-  margin-left:auto; margin-right:0;
+  margin-left:auto; 
+  float: left;
+  height: 50px;
 }
+
 img:last-child{
   display: inline-block; justify-content: flex-end;
-  
+  float: right;
+
 }
 .title {
   position: relative;
@@ -36,6 +43,11 @@ img:last-child{
   padding: 20px;
   font-size: 45px;
   border-radius: 5px;
+
+  display: -webkit-flex; /* Safari */
+  -webkit-align-items: center; /* Safari 7.0+ */
+  display: flex;
+  align-items: center;
 }
 
 .question {
@@ -78,7 +90,7 @@ img:last-child{
 
 .score {
 
-
+font-size: 50px;
   text-align: center;
 }
 
