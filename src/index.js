@@ -70,29 +70,29 @@ class SRP_EHS extends Component {
     });
   };
   //end playAgain
-  async postScore() {
-    try {
-      let result = await fetch(
-        "https://webhook.site/d8a3364c-dfa1-4ddd-a79b-4ce1dc34ead3",
-        {
-          method: "post",
-          mode: "no-cors",
-          headers: {
-            Accept: "application/json",
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify({
-            score: this.state.score,
-            email: "gmail"
-          })
-        }
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  // async postScore() {
+  //   try {
+  //     let result = await fetch(
+  //       "https://webhook.site/d8a3364c-dfa1-4ddd-a79b-4ce1dc34ead3",
+  //       {
+  //         method: "post",
+  //         mode: "no-cors",
+  //         headers: {
+  //           Accept: "application/json",
+  //           "Content-type": "application/json"
+  //         },
+  //         body: JSON.stringify({
+  //           score: this.state.score,
+  //           email: "gmail"
+  //         })
+  //       }
+  //     );
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
   //end post
-  async postAnswer(ans) {
+  async postAnswer(ans, val) {
     try {
       let result = await fetch(
         "https://webhook.site/a2b11cd0-6c73-4efa-bc10-05843eca4344",
@@ -105,7 +105,7 @@ class SRP_EHS extends Component {
           },
           body: JSON.stringify({
             answer: ans,
-            email: "gmail"
+            score: this.state.score,
           })
         }
       );
@@ -117,7 +117,7 @@ class SRP_EHS extends Component {
 
   computeAnswer = (answer, answerValue) => {
     this.setState({ score: parseInt(this.state.score + answerValue) });
-    this.postAnswer(answer);
+    this.postAnswer(answer,answerValue );
     
     console.log("COMPUTE ANSWER TEXT: " + answer);
     //console.log(answerValue);
@@ -167,7 +167,7 @@ class SRP_EHS extends Component {
           )}
 
         {this.state.responses === 5
-          ? this.postScore() && (
+          ?  (
               <Result
                 score={this.state.score}
                 playAgain={this.playAgain}

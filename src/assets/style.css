@@ -38,7 +38,7 @@ img:last-child{
 .title {
   position: relative;
   align-items: center;
-  background-color: #4f4425;
+  background-color: #c59250;
   color: rgb(255, 255, 255);
   padding: 20px;
   font-size: 45px;
@@ -69,7 +69,7 @@ img:last-child{
 .answerBtn {
   position: relative;
   padding: 10px;
-  background-color: #8f7c4a  ;
+  background-color: #835d2b  ;
   display: block;
   margin: 10px;
   outline: none;
