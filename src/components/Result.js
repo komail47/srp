@@ -3,7 +3,7 @@ import GaugeChart from "react-gauge-chart";
 
 const Result = ({ FinalScore, playAgain, resInputted }) => {
 
-let res = "low";
+let res = "Unreliable - You can't count on me";
 
 if (FinalScore >= 12) {
   res = "High Reliable - You can count on me";

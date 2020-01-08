@@ -61,7 +61,7 @@ class SRP_EHS extends Component {
   async postFinalScore() {
     try {
       let result = await fetch(
-        "https://webhook.site/c34db3fb-a280-4947-a04a-5e552d586541",
+        "http://api.ehsweek.com/api/srp/result/",
         {
           method: "post",
           mode: "no-cors",
@@ -70,8 +70,8 @@ class SRP_EHS extends Component {
             "Content-type": "application/json"
           },
           body: JSON.stringify({
-            score: this.state.finalScore,
-            email: "gmail"
+            finalScore: this.state.finalScore
+            
           })
         }
       );
@@ -105,7 +105,7 @@ class SRP_EHS extends Component {
   async postAnswer(ans, val, question) {
     try {
       let result = await fetch(
-        "http://webhook.site/a2b11cd0-6c73-4efa-bc10-05843eca4344",
+        "http://api.ehsweek.com/api/srp/response/",
         {
           method: "post",
           mode: "no-cors",
