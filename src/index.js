@@ -13,9 +13,9 @@ class SRP_EHS extends Component {
       questionBank: [],
       score: 0,
       responses: 0,
-      res: String,
+      res: "",
       ans: "",
-      finalScore:0
+      finalScore: 0
     };
 
     this.computeAnswer = this.computeAnswer.bind(this);
@@ -30,35 +30,21 @@ class SRP_EHS extends Component {
   };
 
   checkRes = () => {
-    //     let st1 = "Low";
-    //     let st2 = "Low Reliable - Educate yourself on how to improve";
-    //     let st3 = "Reliable - But there is scope of improvement";
-    //     let st4 = "High Reliable - You can count on me";
+    let res = "low";
 
-    //     switch(this.state.score){
-    // case 1:this.state.res = st1;
-    // case 2:this.state.res = st1;
-    // case 3:this.state.res = st1;
-    // case 4:this.state.res = st2;
-    // case 5:this.state.res = st2;
-    // case 6:this.state.res = st2;
-    // case 7:this.state.res = st2;
-    // case 8:this.state.res = st3;
-    // case 9:this.state.res = st3;
-    // case 10:this.state.res = st3;
-    // case 12:this.state.res = st4;
-    // case 13:this.state.res = st4;
-    // case 14:this.state.res = st4;
-    // case 15:this.state.res = st4;
-
-    //     }
     if (this.state.finalScore >= 12) {
-      this.state.res = "High Reliable - You can count on me";
-    } else if (this.state.finalScore < 12 && this.state.finalScore >= 9) {
-      this.state.res = "Reliable - But there is scope of improvement";
-    } else if (this.state.finalScore < 9 && this.state.finalScore >= 4) {
-      this.state.res = "Low Reliable - Educate yourself on how to improve";
-    } else this.state.res = "low";
+      res = "High Reliable - You can count on me";
+    }
+    if (this.state.finalScore < 12 && this.state.finalScore >= 9) {
+      res = "Reliable - But there is scope of improvement";
+    }
+    if (this.state.finalScore < 9 && this.state.finalScore >= 4) {
+      res = "Low Reliable - Educate yourself on how to improve";
+    }
+
+    this.setState({
+      res: res
+    });
   };
   //end condition checker
   playAgain = () => {
@@ -68,7 +54,7 @@ class SRP_EHS extends Component {
       responses: 0,
       res: "",
       answer: "",
-      finalScore:0
+      finalScore: 0
     });
   };
   //end playAgain
@@ -94,7 +80,7 @@ class SRP_EHS extends Component {
     }
   }
   //end post
-  
+
   async postQuestion() {
     try {
       let result = await fetch(
@@ -107,8 +93,8 @@ class SRP_EHS extends Component {
             "Content-type": "application/json"
           },
           body: JSON.stringify({
-            question: this.questionBank.question,
-            })
+            question: this.questionBank.question
+          })
         }
       );
     } catch (e) {
@@ -116,7 +102,7 @@ class SRP_EHS extends Component {
     }
   }
   //end post
-  async postAnswer(ans, val) {
+  async postAnswer(ans, val, question) {
     try {
       let result = await fetch(
         "http://webhook.site/a2b11cd0-6c73-4efa-bc10-05843eca4344",
@@ -130,6 +116,7 @@ class SRP_EHS extends Component {
           body: JSON.stringify({
             answer: ans,
             score: val,
+            question: question
           })
         }
       );
@@ -139,23 +126,24 @@ class SRP_EHS extends Component {
   }
   //end post
 
-  computeAnswer = (answer, answerValue) => {
-    this.setState({ score: this.state.score});
-    console.log("score"+this.state.score);
-    this.setState({ finalScore: parseInt(this.state.finalScore + answerValue) });
-    this.postAnswer(answer,answerValue );
-    
+  computeAnswer = (answer, answerValue, question) => {
+    this.setState({ score: this.state.score });
+    console.log("score" + this.state.score);
+    this.setState({
+      finalScore: parseInt(this.state.finalScore + answerValue)
+    });
+    this.postAnswer(answer, answerValue, question);
+
     console.log("COMPUTE ANSWER TEXT: " + answer);
     //console.log(answerValue);
 
     console.log(this.state.score);
-    this.checkRes();
+
 
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
     });
-   
-
+    this.checkRes();
     //TODO: Create C# WEB API
 
     //TODO: Connect react to the WEB API
@@ -165,15 +153,13 @@ class SRP_EHS extends Component {
     this.getQuestion();
   }
   componentDidUpdate() {
-   console.log("final score"+this.state.finalScore);
- 
+    console.log("final score" + this.state.finalScore);
 
-   console.log("score"+this.state.score);
-   if (this.state.responses==5){
-   this.checkRes();
-   
-  this.postFinalScore();
-        }
+    console.log("score" + this.state.score);
+    if (this.state.responses == 5) {
+
+      this.postFinalScore();
+    }
   }
 
   render() {
@@ -202,16 +188,13 @@ class SRP_EHS extends Component {
             )
           )}
 
-        {this.state.responses === 5
-          ?  (
-              <Result
-                FinalScore={this.state.finalScore}
-                playAgain={this.playAgain}
-                res={this.state.res}
-              />
-            )
-          : null}
-        
+        {this.state.responses === 5 ? (
+          <Result
+            FinalScore={this.state.finalScore}
+            playAgain={this.playAgain}
+            res={this.state.res}
+          />
+        ) : null}
       </div>
     );
   }

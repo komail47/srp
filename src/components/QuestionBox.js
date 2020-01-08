@@ -13,7 +13,7 @@ const QuestionBox = ({ question, options, computeAnswer, values, finalAnswer }) 
           onClick={() => {
             let value = values[index];
             setAnswer([text]);
-            computeAnswer(text, value);
+            computeAnswer(text, value, question);
             
           }}
         >
