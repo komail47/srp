@@ -14,7 +14,8 @@ class SRP_EHS extends Component {
       score: 0,
       responses: 0,
       res: String,
-      ans: ""
+      ans: "",
+      finalScore:0
     };
 
     this.computeAnswer = this.computeAnswer.bind(this);
@@ -51,11 +52,11 @@ class SRP_EHS extends Component {
     // case 15:this.state.res = st4;
 
     //     }
-    if (this.state.score >= 12) {
+    if (this.state.finalScore >= 12) {
       this.state.res = "High Reliable - You can count on me";
-    } else if (this.state.score < 12 && this.state.score >= 9) {
+    } else if (this.state.finalScore < 12 && this.state.finalScore >= 9) {
       this.state.res = "Reliable - But there is scope of improvement";
-    } else if (this.state.score < 9 && this.state.score >= 4) {
+    } else if (this.state.finalScore < 9 && this.state.finalScore >= 4) {
       this.state.res = "Low Reliable - Educate yourself on how to improve";
     } else this.state.res = "low";
   };
@@ -65,37 +66,60 @@ class SRP_EHS extends Component {
     this.setState({
       score: 0,
       responses: 0,
-      res: String,
-      answer: ""
+      res: "",
+      answer: "",
+      finalScore:0
     });
   };
   //end playAgain
-  // async postScore() {
-  //   try {
-  //     let result = await fetch(
-  //       "https://webhook.site/d8a3364c-dfa1-4ddd-a79b-4ce1dc34ead3",
-  //       {
-  //         method: "post",
-  //         mode: "no-cors",
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-type": "application/json"
-  //         },
-  //         body: JSON.stringify({
-  //           score: this.state.score,
-  //           email: "gmail"
-  //         })
-  //       }
-  //     );
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
+  async postFinalScore() {
+    try {
+      let result = await fetch(
+        "https://webhook.site/c34db3fb-a280-4947-a04a-5e552d586541",
+        {
+          method: "post",
+          mode: "no-cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            score: this.state.finalScore,
+            email: "gmail"
+          })
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  //end post
+  
+  async postQuestion() {
+    try {
+      let result = await fetch(
+        "http://webhook.site/f102deac-b67d-4c31-a6be-241d4894ce6e",
+        {
+          method: "post",
+          mode: "no-cors",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            question: this.questionBank.question,
+            })
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
   //end post
   async postAnswer(ans, val) {
     try {
       let result = await fetch(
-        "https://webhook.site/a2b11cd0-6c73-4efa-bc10-05843eca4344",
+        "http://webhook.site/a2b11cd0-6c73-4efa-bc10-05843eca4344",
         {
           method: "post",
           mode: "no-cors",
@@ -105,7 +129,7 @@ class SRP_EHS extends Component {
           },
           body: JSON.stringify({
             answer: ans,
-            score: this.state.score,
+            score: val,
           })
         }
       );
@@ -116,7 +140,9 @@ class SRP_EHS extends Component {
   //end post
 
   computeAnswer = (answer, answerValue) => {
-    this.setState({ score: parseInt(this.state.score + answerValue) });
+    this.setState({ score: this.state.score});
+    console.log("score"+this.state.score);
+    this.setState({ finalScore: parseInt(this.state.finalScore + answerValue) });
     this.postAnswer(answer,answerValue );
     
     console.log("COMPUTE ANSWER TEXT: " + answer);
@@ -128,6 +154,7 @@ class SRP_EHS extends Component {
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
     });
+   
 
     //TODO: Create C# WEB API
 
@@ -138,7 +165,15 @@ class SRP_EHS extends Component {
     this.getQuestion();
   }
   componentDidUpdate() {
+   console.log("final score"+this.state.finalScore);
+ 
+
+   console.log("score"+this.state.score);
+   if (this.state.responses==5){
+   this.checkRes();
    
+  this.postFinalScore();
+        }
   }
 
   render() {
@@ -162,6 +197,7 @@ class SRP_EHS extends Component {
                 values={values}
                 key={questionId}
                 computeAnswer={this.computeAnswer}
+                finalAnswer={this.postFinalScore}
               />
             )
           )}
@@ -169,12 +205,13 @@ class SRP_EHS extends Component {
         {this.state.responses === 5
           ?  (
               <Result
-                score={this.state.score}
+                FinalScore={this.state.finalScore}
                 playAgain={this.playAgain}
                 res={this.state.res}
               />
             )
           : null}
+        
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import GaugeChart from "react-gauge-chart";
 
-const Result = ({ score, playAgain, res }) => (
+const Result = ({ FinalScore, playAgain, res }) => (
   <div className="score-board">
     <div className="score">
       <GaugeChart
@@ -9,12 +9,12 @@ const Result = ({ score, playAgain, res }) => (
         nrOfLevels={4}
         colors={["#EA4228", "	#f55f19", "#F5CD19", "#5BE12C"]}
         hideText={true}
-        percent={score / 15}
+        percent={FinalScore / 15}
         arcPadding={0}
       />
 
     
-        {res} {score}
+        {res} {FinalScore}
       
     </div>
     <button className="playBtn" onClick={playAgain}>
