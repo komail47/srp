@@ -21,6 +21,9 @@ class SRP_EHS extends Component {
     this.computeAnswer = this.computeAnswer.bind(this);
   }
 
+
+
+
   getQuestion = () => {
     quizService().then(question => {
       this.setState({
@@ -60,21 +63,17 @@ class SRP_EHS extends Component {
   //end playAgain
   async postFinalScore() {
     try {
-      let result = await fetch(
-        "http://api.ehsweek.com/api/srp/result/",
-        {
-          method: "post",
-          mode: "no-cors",
-          headers: {
-            Accept: "application/json",
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify({
-            finalScore: this.state.finalScore
-            
-          })
-        }
-      );
+      let result = await fetch("http://api.ehsweek.com/api/srp/result/", {
+        method: "post",
+        mode: "no-cors",
+        headers: {
+          Accept: "application/json",
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+          finalScore: this.state.finalScore
+        })
+      });
     } catch (e) {
       console.log(e);
     }
@@ -102,43 +101,47 @@ class SRP_EHS extends Component {
     }
   }
   //end post
-  async postAnswer(ans, val, question) {
-    try {
-      let result = await fetch(
-        "http://api.ehsweek.com/api/srp/response/",
-        {
-          method: "post",
-          mode: "no-cors",
-          headers: {
-            Accept: "application/json",
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify({
-            answer: ans,
-            score: val,
-            question: question
-          })
+  postAnswer(ans, val, question) {
+    
+  
+  fetch('http://api.ehsweek.com/api/srp/responses/'+question+'/'+ans+'/'+val, {
+        method: 'GET',
+        mode: 'no-cors',
+        headers: {
+          'Accept':'application/json',
+          'Content-Type': 'application/json'
         }
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  }
+      }
+    );
+  } 
+
   //end post
 
-  computeAnswer = (answer, answerValue, question) => {
+  computeAnswer = (answer, answerValue, question, key) => {
     this.setState({ score: this.state.score });
     console.log("score" + this.state.score);
     this.setState({
       finalScore: parseInt(this.state.finalScore + answerValue)
     });
-    this.postAnswer(answer, answerValue, question);
+    //this.postAnswer(answer, answerValue, question);
+// this.post();
 
     console.log("COMPUTE ANSWER TEXT: " + answer);
+
     //console.log(answerValue);
+    fetch('http://api.ehsweek.com/api/srp/responses/'+question+'/'+answer+'/'+answerValue, {
+      method: 'GET',
+      mode: 'no-cors',
+      headers: {
+        Accept:'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+    //
+
 
     console.log(this.state.score);
-
 
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
@@ -157,7 +160,6 @@ class SRP_EHS extends Component {
 
     console.log("score" + this.state.score);
     if (this.state.responses == 5) {
-
       this.postFinalScore();
     }
   }
@@ -176,11 +178,12 @@ class SRP_EHS extends Component {
         {this.state.questionBank.length > 0 &&
           this.state.responses < 5 &&
           this.state.questionBank.map(
-            ({ question, answers, values, questionId }) => (
+            ({ question, answers, values, questionId, id }) => (
               <QuestionBox
                 question={question}
                 options={answers}
                 values={values}
+                id={id}
                 key={questionId}
                 computeAnswer={this.computeAnswer}
                 finalAnswer={this.postFinalScore}

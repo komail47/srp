@@ -1,77 +1,77 @@
 const qBank = [
   {
-    question: "WHEN YOU ARE FACED WITH A NEW PROBLEM, YOU ...",
+    question: "WHEN YOU ARE FACED WITH A NEW PROBLEM, YOU",
     answers: [
-      "Prioritize the problem based on the impact and address it as per the priority.",
-      "Solve it in the fastest way possible.",
-      "Escalate it to the supervisor and ask for a solution.",
-      "Involve all stake holders and device the best way to solve the problem.  "
+      "Prioritize the problem based on the impact and address it as per the priority",
+      "Solve it in the fastest way possible",
+      "Escalate it to the supervisor and ask for a solution",
+      "Involve all stake holders and device the best way to solve the problem"
     ],
 
     values: [3, 1, 1, 2],
     questionId: "099099"
   },
   {
-    question: "MY FIRST TASK EVERYDAY AT WORK IS ...",
+    question: "MY FIRST TASK EVERYDAY AT WORK IS",
     answers: [
-      "Plan all the tasks & meetings for the day & address the tasks based on the priority",
-      "Start working on the most urgent task at hand.",
-      "Plan all the tasks & meetings for the day & address the easiest one first.",
-      "Delegate tasks to someone else and attend to the tasks that are interesting."
+      "Plan all the tasks and meetings for the day and address the tasks based on the priority",
+      "Start working on the most urgent task at hand",
+      "Plan all the tasks and meetings for the day and address the easiest one first",
+      "Delegate tasks to someone else and attend to the tasks that are interesting"
     ],
 
     values: [3, 2, 1, 1],
     questionId: "183452"
   },
   {
-    question: "WHEN YOU RECEIVE A MEETING REQUEST, YOU ...",
+    question: "WHEN YOU RECEIVE A MEETING REQUEST, YOU",
     answers: [
-      "Accept the meeting request and may or may not attend the meeting.",
-      "Do not respond to the meeting request but will try to attend the meeting if possible.",
-      "Accept/Decline the meeting request/Propose another convenient time if busy.",
-      "Decline the meeting request."
+      "Accept the meeting request and may or may not attend the meeting",
+      "Do not respond to the meeting request but will try to attend the meeting if possible",
+      "Accept/Decline the meeting request/Propose another convenient time if busy",
+      "Decline the meeting request"
     ],
     values: [0, 1, 3, 0],
     questionId: "267908"
   },
   {
-    question: "ON RECEIVING AN E-MAIL, YOU ...",
+    question: "ON RECEIVING AN E-MAIL, YOU",
     answers: [
-      "Prioritize it based on the subject and address the high priority ones first & setup tasks to address action items as required.",
-      "Reply to it no matter what & setup tasks for action items as required.",
-      "Reply to the email or act on it as soon as it is received.",
-      "Ignore the mail until I receive a reminder."
+      "Prioritize it based on the subject and address the high priority ones first and setup tasks to address action items as required",
+      "Reply to it no matter what and setup tasks for action items as required",
+      "Reply to the email or act on it as soon as it is received",
+      "Ignore the mail until I receive a reminder"
     ],
     values: [3, 2, 1, 0],
     questionId: "333247"
   },
   {
-    question: "WHEN ATTENDING A MEETING, YOU ...",
+    question: "WHEN ATTENDING A MEETING, YOU",
     answers: [
-      "Will reach the meeting venue 5 minutes before the meeting starts & if unable to make it in time, will call the meeting organizer and inform him/her of the delay.",
-      "Will reach the meeting in time if nothing else comes up.",
-      "Arrive late since everyone comes late to the meetings.",
-      "Arrive half an hour early and help with meeting setup."
+      "Will reach the meeting venue 5 minutes before the meeting starts and if unable to make it in time, will call the meeting organizer and inform him or her of the delay",
+      "Will reach the meeting in time if nothing else comes up",
+      "Arrive late since everyone comes late to the meetings",
+      "Arrive half an hour early and help with meeting setup"
     ],
     values: [3, 1, 0, 2],
     questionId: "496293"
   },
   {
-    question: "WHEN ORGANIZING A MEETING, YOU ...",
+    question: "WHEN ORGANIZING A MEETING, YOU",
     answers: [
-      "Start & Finish the meeting on time, no matter what.",
-      "Always have an agenda & stick to it.",
-      "Prepare meetings notes/actions to track the decisions & discussions.",
+      "Start and Finish the meeting on time, no matter what",
+      "Always have an agenda and stick to it",
+      "Prepare meetings notes/actions to track the decisions and discussions",
       "All of the above"
     ],
     values: [1, 2, 1, 3],
     questionId: "588909"
   },
   {
-    question: "WHEN HANDLING AN EXCESS WORKLOAD, YOU ...",
+    question: "WHEN HANDLING AN EXCESS WORKLOAD, YOU",
     answers: [
-      "Let things hanging and finish it whenever you get time.",
-      "Create a time management plan and execute your tasks accordingly.",
+      "Let things hanging and finish it whenever you get time",
+      "Create a time management plan and execute your tasks accordingly",
       "Work overtime and complete your workload",
       "Delegate certain tasks and handle the most important items yourself"
     ],
@@ -79,21 +79,21 @@ const qBank = [
     questionId: "648452"
   },
   {
-    question: "WHEN RUNNING LATE TO WORK, YOU ...",
+    question: "WHEN RUNNING LATE TO WORK, YOU",
     answers: [
-      "Call your supervisor and inform him beforehand.",
-      "Make a random excuse when you arrive.",
-      "Avoid your supervisor and pretend nothing happened.",
-      "Send email at the end of the month, explaining your reason."
+      "Call your supervisor and inform him beforehand",
+      "Make a random excuse when you arrive",
+      "Avoid your supervisor and pretend nothing happened",
+      "Send email at the end of the month, explaining your reason"
     ],
     values: [3, 1, 0, 2],
     questionId: "786649"
   },
   {
-    question: "WHEN YOU DISAGREE WITH YOUR SUPERVISOR ...",
+    question: "WHEN YOU DISAGREE WITH YOUR SUPERVISOR",
     answers: [
-      "Keep your thoughts to yourself to avoid potential conflicts.",
-      "Express your opinion in a respectable manner.",
+      "Keep your thoughts to yourself to avoid potential conflicts",
+      "Express your opinion in a respectable manner",
       "Wait until you get cooled down and then talk to him about the topic",
       "All of the above"
     ],
@@ -101,41 +101,41 @@ const qBank = [
     questionId: "839754"
   },
   {
-    question: "WHEN YOU OBSERVE AN ABNORMAL SITUATION ...",
+    question: "WHEN YOU OBSERVE AN ABNORMAL SITUATION",
     answers: [
       "Report it instantly, to the right person",
-      "Think it is someone else’s problem to deal with it. ",
-      "Walk passed it, pretend you did not see it.",
-      "Report the incident to the first person you see."
+      "Think it is someone else’s problem to deal with it",
+      "Walk passed it, pretend you did not see it",
+      "Report the incident to the first person you see"
     ],
     values: [3, 0, 0, 2],
     questionId: "98390"
   },
   {
-    question: "MY HEALTH ALWAYS COMES ...",
+    question: "MY HEALTH ALWAYS COMES",
     answers: [
-      "First, I try to live a healthy lifestyle.",
-      "First, however exercise is not part of my daily lifestyle.",
-      "Second, good food comes first always.",
-      "First, however I try to exercise whenever I can and have time."
+      "First, I try to live a healthy lifestyle",
+      "First, however exercise is not part of my daily lifestyle",
+      "Second, good food comes first always",
+      "First, however I try to exercise whenever I can and have time"
     ],
     values: [3, 1, 0, 2],
     questionId: "1071006"
   },
   {
     question:
-      "THE LAST TIME I LISTENED AND FOLLOWED A SUGGESTION FROM MY TEAM ...",
+      "THE LAST TIME I LISTENED AND FOLLOWED A SUGGESTION FROM MY TEAM",
     answers: [
-      "Last week.",
-      "Two months ago.",
-      "I can’t Remember. ",
-      "I rarely do."
+      "Last week",
+      "Two months ago",
+      "I can’t Remember",
+      "I rarely do"
     ],
     values: [3, 0, 1, 0],
     questionId: "1174154"
   },
   {
-    question: "WHENEVER I MAKE A PROMISE ...",
+    question: "WHENEVER I MAKE A PROMISE",
     answers: [
       "I usually follow through with it",
       "I occasionally follow through with it",
@@ -146,29 +146,29 @@ const qBank = [
     questionId: "1226535"
   },
   {
-    question: "I TAKE PERSONAL RESPONSIBILITY FOR THE ORDERS I GIVE ...",
-    answers: ["Usually", "Occasionally ", "Sometimes", "Always"],
+    question: "I TAKE PERSONAL RESPONSIBILITY FOR THE ORDERS I GIVE",
+    answers: ["Usually", "Occasionally", "Sometimes", "Always"],
     values: [2, 1, 1, 3],
     questionId: "1310938"
   },
   {
-    question: "I HAVE A CLEAR UNDERSTANDING OF MY RESPONSIBILITIES ...",
+    question: "I HAVE A CLEAR UNDERSTANDING OF MY RESPONSIBILITIES",
     answers: [
-      "Things are Vague.",
-      "I have some confusion.",
-      "Generally speaking, yes.",
-      "Exactly."
+      "Things are Vague",
+      "I have some confusion",
+      "Generally speaking, yes",
+      "Exactly"
     ],
     values: [1, 1, 2, 3],
     questionId: "1436873"
   },
   {
     question:
-      "I SET A GOOD EXAMPLE FOR MY PEOPLE IN THE USE OF MY TIME AT WORK ...",
+      "I SET A GOOD EXAMPLE FOR MY PEOPLE IN THE USE OF MY TIME AT WORK",
     answers: [
       "If they did what I do, we’d be in trouble",
-      "I waste significant amount of time.",
-      "Sometimes yes, sometimes no.",
+      "I waste significant amount of time",
+      "Sometimes yes, sometimes no",
       "Usually"
     ],
     values: [0, 0, 2, 2],
