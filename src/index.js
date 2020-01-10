@@ -15,14 +15,12 @@ class SRP_EHS extends Component {
       responses: 0,
       res: "",
       ans: "",
-      finalScore: 0
+      finalScore: 0,
+      saved: ""
     };
 
-    this.computeAnswer = this.computeAnswer.bind(this);
+    //this.computeAnswer = this.computeAnswer.bind(this);
   }
-
-
-
 
   getQuestion = () => {
     quizService().then(question => {
@@ -61,22 +59,15 @@ class SRP_EHS extends Component {
     });
   };
   //end playAgain
-  async postFinalScore() {
-    try {
-      let result = await fetch("http://api.ehsweek.com/api/srp/result/", {
-        method: "post",
-        mode: "no-cors",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify({
-          finalScore: this.state.finalScore
-        })
-      });
-    } catch (e) {
-      console.log(e);
-    }
+  postFinalScore() {
+    fetch("http://api.ehsweek.com/api/srp/result/" + this.state.finalScore, {
+      method: "GET",
+      mode: "no-cors",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json"
+      }
+    });
   }
   //end post
 
@@ -101,47 +92,51 @@ class SRP_EHS extends Component {
     }
   }
   //end post
-  postAnswer(ans, val, question) {
-    
-  
-  fetch('http://api.ehsweek.com/api/srp/responses/'+question+'/'+ans+'/'+val, {
-        method: 'GET',
-        mode: 'no-cors',
-        headers: {
-          'Accept':'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-  } 
+  // postAnswer(ans, val, question) {
+
+  // fetch('http://api.ehsweek.com/api/srp/responses/'+question+'/'+ans+'/'+val, {
+  //       method: 'GET',
+
+  //       headers: {
+  //         'Accept':'application/json',
+  //         'Content-Type': 'application/json'
+  //       }
+  //     }
+  //   );
+  // }
 
   //end post
 
-  computeAnswer = (answer, answerValue, question, key) => {
+  computeAnswer = (answer, answerValue, question) => {
     this.setState({ score: this.state.score });
     console.log("score" + this.state.score);
     this.setState({
       finalScore: parseInt(this.state.finalScore + answerValue)
     });
     //this.postAnswer(answer, answerValue, question);
-// this.post();
+    // this.post();
 
     console.log("COMPUTE ANSWER TEXT: " + answer);
-
-    //console.log(answerValue);
-    fetch('http://api.ehsweek.com/api/srp/responses/'+question+'/'+answer+'/'+answerValue, {
-      method: 'GET',
-      mode: 'no-cors',
-      headers: {
-        Accept:'application/json',
-        'Content-Type': 'application/json'
-      }
+    if (this.state.saved != question) {
+      //console.log(answerValue);
+      fetch(
+        "http://api.ehsweek.com/api/srp/responses/" +
+          question +
+          "/" +
+          answer +
+          "/" +
+          answerValue,
+        {
+          method: "GET",
+          mode: "no-cors",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      this.setState.saved = question;
     }
-  );
-    //
-
-
-    console.log(this.state.score);
 
     this.setState({
       responses: this.state.responses < 5 ? this.state.responses + 1 : 5
@@ -156,8 +151,6 @@ class SRP_EHS extends Component {
     this.getQuestion();
   }
   componentDidUpdate() {
-    console.log("final score" + this.state.finalScore);
-
     console.log("score" + this.state.score);
     if (this.state.responses == 5) {
       this.postFinalScore();
@@ -178,12 +171,11 @@ class SRP_EHS extends Component {
         {this.state.questionBank.length > 0 &&
           this.state.responses < 5 &&
           this.state.questionBank.map(
-            ({ question, answers, values, questionId, id }) => (
+            ({ question, answers, values, questionId }) => (
               <QuestionBox
                 question={question}
                 options={answers}
                 values={values}
-                id={id}
                 key={questionId}
                 computeAnswer={this.computeAnswer}
                 finalAnswer={this.postFinalScore}

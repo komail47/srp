@@ -28,7 +28,7 @@ const qBank = [
     answers: [
       "Accept the meeting request and may or may not attend the meeting",
       "Do not respond to the meeting request but will try to attend the meeting if possible",
-      "Accept/Decline the meeting request/Propose another convenient time if busy",
+      "Accept or Decline the meeting request or Propose another convenient time if busy",
       "Decline the meeting request"
     ],
     values: [0, 1, 3, 0],
@@ -61,7 +61,7 @@ const qBank = [
     answers: [
       "Start and Finish the meeting on time, no matter what",
       "Always have an agenda and stick to it",
-      "Prepare meetings notes/actions to track the decisions and discussions",
+      "Prepare meetings notes or actions to track the decisions and discussions",
       "All of the above"
     ],
     values: [1, 2, 1, 3],

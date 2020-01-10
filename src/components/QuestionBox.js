@@ -1,7 +1,7 @@
   import React, { useState } from "react";
   import Answer from "./Answer.jsx";
 
-  const QuestionBox = ({ question, options, computeAnswer, values, finalAnswer }) => {
+  const QuestionBox = ({ question, options, computeAnswer, values, finalAnswer, key }) => {
     const [answer, setAnswer] = useState(options);
     return (
       <div className="questionBox">
@@ -13,7 +13,7 @@
             onClick={() => {
               let value = values[index];
               setAnswer([text]);
-              computeAnswer(text, value, question);
+              computeAnswer(text, value, question, key);
               
             }}
           >
